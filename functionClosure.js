@@ -1,9 +1,28 @@
-function buildList(list) {
+/*
+Author: 	Rick Miller
+Course: 	CS 290
+Date:		1/30/16
+Assignment:	JS Example 5 Activity (Scope and Closure - Week 4)
+
+*/
+
+function buildList(list) 
+{
     var result = [];
-    for (var i = 0; i < list.length; i++) {
-        var item = 'item' + list[i];
-        result.push( function() {alert(item + ' ' + list[i]);} );
-    }
+	var item;
+    for (var i = 0; i < list.length; i++) 
+	{
+        result.push( 
+						function(x) 
+						{
+							return function()
+							{
+								item = 'item' + list[x];
+								console.log(item + ' ' + list[x]);
+							};
+						}(i)//no semicolon here
+					);
+	}
     return result;
 }
  

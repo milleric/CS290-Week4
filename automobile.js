@@ -1,5 +1,5 @@
-console.log("hello world");
-output(printYear);
+//console.log(runMain);
+
 
 function Automobile( year, make, model, type )
 {
@@ -8,24 +8,15 @@ function Automobile( year, make, model, type )
     this.model = model; //string (ex. Accord, Focus)
     this.type = type; //string (ex. Pickup, SUV)
 	
-	
-	function LogMe(array, Bool, newLog, forE)
+	function LogMe(value)//value should be a boolean value
 	{
-		//This is used to pass console.log into another function
-		var newLog=console.log.bind(console);
-		if (Bool==true)
+		if (value)
 		{
-			for (var i=0; i<array.length; i++)
-			{
-				newLog(array[i].year+", "+array[i].make+", "+array[i].model);
-			}
+			output.console(this.year+" "+this.make+" "+this.model+" "+this.type);
 		}
 		else
 		{
-			for (var i=0; i<array.length; i++)
-			{
-			newLog(array[i].year+", "+array[i].make+", "+array[i].model+", "+array[i].type);
-			}
+			output.console(this.year+" "+this.make+" "+this.model);
 		}
 	}
 }
@@ -37,7 +28,9 @@ var automobiles = [
     new Automobile(2010, "Toyota", "Tacoma", "Pickup"),
     new Automobile(2005, "Lotus", "Elise", "Roadster"),
     new Automobile(2008, "Subaru", "Outback", "Wagon")
-    ];
+	];
+	
+console.log(automobiles);
 
 /*This function sorts arrays using an arbitrary comparator. You pass it a comparator and
  an array of objects appropriate for that comparator and it will return a new array which 
@@ -56,12 +49,12 @@ function sortArr(Comparator, array)
 		{
 			if (Comparator(array[i-1], array[i])== false)
 			{
-				console.log(array[i-1]);
+				//console.log(array[i-1]);
 				temp=array[i-1];		//this if statement handles the element swap inside of array
 				array[i-1]=array[i];
 				array[i]=temp;
 				rerun++;				//this causes the do-while loop to run again
-				console.log(array[i-1]);
+				//console.log(array[i-1]);
 			}
 			else{}
 		}
@@ -71,13 +64,28 @@ function sortArr(Comparator, array)
 	return array;
 }
 
-var printYear=sortArr(yearComparator, automobiles);
-
+//var printYear=sortArr(yearComparator, automobiles);
+var runMain=main(automobiles);
 //var wrapLogMe=Automobile.LogMe.bind(Automobile);
 
-function output(print)//log should be wrapLogMe() and print= printYear()
+function main(array)
 {
-	console.log(print);
+	console.log("*****");
+	console.log("The cars sorted by year are: ");
+	
+	for (var i=0; i<array.length; i++)
+	{
+		sortArr(yearComparator, array);
+		outputArr(automobiles, true);
+	}
+}
+
+function outputArr(array, bool)//Array is an individual car array, bool is boolean
+{
+	for (var i=0; i<array.length; i++)
+	{
+		array[i].LogMe(bool)
+	}
 }
 
 function getrank(item1)//This functions is working
@@ -187,4 +195,63 @@ The cars sorted by type are:
 *****
 
 As an example of the content in the parenthesis:
-1990 Ford F-150 */
+1990 Ford F-150 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function LogMe(array, Bool, newLog, forE) //inside automobile class
+	{
+		//This is used to pass console.log into another function
+		var newLog=console.log.bind(console);
+		if (Bool==true)
+		{
+			for (var i=0; i<array.length; i++)
+			{
+				newLog(array[i].year+", "+array[i].make+", "+array[i].model);
+			}
+		}
+		else
+		{
+			for (var i=0; i<array.length; i++)
+			{
+			newLog(array[i].year+", "+array[i].make+", "+array[i].model+", "+array[i].type);
+			}
+		}
+	}
+
+
+
+*/
+
+
